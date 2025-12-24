@@ -3,448 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Knowledge for Bankers</title>
+    <title>Modern Banking Guide</title>
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="theme-color" content="#0056b3">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-color: #0056b3; /* Bank Blue */
-            --secondary-color: #f8f9fa;
-            --text-color: #333;
-            --border-color: #ddd;
-            --highlight: #e9ecef;
-        }
+        :root { --primary: #0056b3; --bg: #f4f7f6; --text: #333; }
+        body { font-family: sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+        
+        /* Header */
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; }
+        .app-title { margin: 0; font-size: 1.8rem; }
+        .author-info { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+        
+        /* Navigation */
+        nav { position: sticky; top: 0; background: white; display: flex; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
+        nav button { flex: 1; min-width: 100px; padding: 15px; border: none; background: none; font-weight: bold; cursor: pointer; border-bottom: 3px solid transparent; }
+        nav button.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f4f7f6;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* --- Header Section --- */
-        header {
-            background: linear-gradient(135deg, #0056b3, #004494);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .book-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .book-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .author-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            backdrop-filter: blur(5px);
-        }
-
-        .author-info h3 { margin-bottom: 5px; }
-        .contact-links a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .contact-links a:hover { color: #ffc107; }
-
-        /* --- Navigation --- */
-        nav {
-            position: sticky;
-            top: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem;
-        }
-
-        nav button {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: 0.3s;
-        }
-
-        nav button:hover, nav button.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-
-        /* --- Main Content Layout --- */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
+        /* Container */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; padding-bottom: 60px; }
+        .section { display: none; animation: fadeIn 0.3s; }
         .section.active { display: block; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Intro & Ethics --- */
-        .intro-box, .ethics-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-        .ethics-list li { margin-bottom: 8px; list-style-type: none; }
-        .ethics-list li i { color: var(--primary-color); margin-right: 10px; }
-
-        /* --- Chapters (Accordion) --- */
-        .chapter-card {
-            background: white;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        .chapter-header {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            border-bottom: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .chapter-header:hover { background: var(--secondary-color); }
+        /* Cards */
+        .card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card h3 { margin-top: 0; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; }
         
-        .chapter-header h3 { font-size: 1.2rem; color: #2c3e50; }
+        /* Chapter Body */
+        .chapter-body { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .chapter-body.show { display: block; }
         
-        .chapter-body {
-            display: none;
-            padding: 1.5rem;
-            background: #fafafa;
-            border-top: 1px solid var(--border-color);
-        }
+        /* Search */
+        .search-box { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box;}
 
-        .chapter-card.open .chapter-body { display: block; }
-        .chapter-card.open .chapter-header {
-            background: var(--primary-color);
-            color: white;
-        }
-        .chapter-card.open .chapter-header h3 { color: white; }
-
-        .qa-box {
-            margin-top: 15px;
-            background: white;
-            padding: 15px;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 4px;
-        }
-        .qa-question { font-weight: bold; color: #d35400; margin-bottom: 5px; }
-        .qa-answer { color: #555; }
-
-        /* --- Glossary --- */
-        .search-box {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 50px;
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-box:focus { border-color: var(--primary-color); }
-
-        .glossary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .term-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid #27ae60;
-        }
-        .term-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; color: #27ae60; }
-
-        /* --- Emails --- */
-        .email-card {
-            background: white;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .email-header {
-            padding: 15px;
-            background: var(--secondary-color);
-            border-bottom: 1px solid var(--border-color);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-        }
-        .email-body {
-            padding: 20px;
-            white-space: pre-line;
-            font-family: monospace;
-            font-size: 0.95rem;
-            color: #444;
-        }
-        .copy-btn {
-            background: white;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .copy-btn:hover { background: var(--primary-color); color: white; }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #2c3e50;
-            color: #bdc3c7;
-            margin-top: 3rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .book-title { font-size: 1.8rem; }
-            nav { overflow-x: auto; justify-content: flex-start; }
-            nav button { flex-shrink: 0; }
-        }
+        /* Email */
+        .email-box { background: #f9f9f9; padding: 15px; border-left: 4px solid var(--primary); font-family: monospace; white-space: pre-wrap; margin-bottom: 15px; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <header id="header-area">
-        </header>
+    <header>
+        <h1 class="app-title" id="appTitle">Loading...</h1>
+        <div class="author-info" id="authorInfo"></div>
+    </header>
 
     <nav>
-        <button onclick="showSection('home')" class="active" id="btn-home">হোম ও পরিচিতি</button>
-        <button onclick="showSection('chapters')" id="btn-chapters">অধ্যায় সমূহ (৬০)</button>
-        <button onclick="showSection('glossary')" id="btn-glossary">শব্দভাণ্ডার</button>
-        <button onclick="showSection('emails')" id="btn-emails">ইমেইল ফরম্যাট</button>
+        <button onclick="switchTab('home')" class="active" id="btn-home">হোম</button>
+        <button onclick="switchTab('chapters')" id="btn-chapters">অধ্যায়</button>
+        <button onclick="switchTab('glossary')" id="btn-glossary">শব্দভাণ্ডার</button>
+        <button onclick="switchTab('emails')" id="btn-emails">ইমেইল</button>
     </nav>
 
     <div class="container">
-        
         <div id="home" class="section active">
-            <div id="intro-content"></div>
-            <div id="ethics-content"></div>
+            <div class="card" id="introCard">Loading content...</div>
+            <div class="card" id="ethicsCard"></div>
         </div>
 
         <div id="chapters" class="section">
-            <h2 style="margin-bottom: 20px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">
-                <i class="fas fa-book-open"></i> বিস্তারিত অধ্যায়
-            </h2>
-            <div id="chapter-list"></div>
+            <div id="chapterList"></div>
         </div>
 
         <div id="glossary" class="section">
-            <h2 style="margin-bottom: 20px;"><i class="fas fa-search"></i> ব্যাংকিং শব্দভাণ্ডার</h2>
-            <input type="text" id="glossarySearch" class="search-box" placeholder="শব্দ খুঁজুন... (যেমন: NPL, L/C, SME)" onkeyup="filterGlossary()">
-            <div id="glossary-list" class="glossary-grid"></div>
+            <input type="text" class="search-box" id="searchGlossary" placeholder="শব্দ খুঁজুন... (যেমন: NPL)" onkeyup="filterGlossary()">
+            <div id="glossaryList"></div>
         </div>
 
         <div id="emails" class="section">
-            <h2 style="margin-bottom: 20px;"><i class="fas fa-envelope"></i> অফিশিয়াল ইমেইল ড্রাফট</h2>
-            <div id="email-list"></div>
+            <div id="emailList"></div>
         </div>
-
     </div>
-
-    <footer id="footer-area">
-        </footer>
 
     <script type="module">
         import bookContent from './content.js';
 
-        // 1. Render Header
-        const meta = bookContent.meta;
-        document.getElementById('header-area').innerHTML = `
-            <div class="book-title">${meta.bookTitle}</div>
-            <div class="book-subtitle">${meta.subTitle}</div>
-            <div class="author-card">
-                <h3>${meta.authorName}</h3>
-                <p>${meta.authorDesignation}</p>
-                <div class="contact-links" style="margin-top: 10px;">
-                    <a href="tel:${meta.contact.mobile}" title="Call"><i class="fas fa-phone"></i></a>
-                    <a href="mailto:${meta.contact.email}" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://wa.me/${meta.contact.mobile}" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="${meta.contact.facebook}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
+        // 1. Load Header & Intro
+        document.getElementById('appTitle').innerText = bookContent.meta.bookTitle;
+        document.getElementById('authorInfo').innerText = bookContent.meta.authorName;
+        
+        document.getElementById('introCard').innerHTML = `
+            <h3>ভূমিকা</h3>
+            <p><strong>উৎসর্গ:</strong> ${bookContent.intro.dedication}</p>
+            <p>${bookContent.intro.preface}</p>
         `;
 
-        // 2. Render Intro & Ethics
-        document.getElementById('intro-content').innerHTML = `
-            <div class="intro-box">
-                <h3 style="color: var(--primary-color);"><i class="fas fa-quote-left"></i> উৎসর্গ</h3>
-                <p style="font-style: italic; margin-bottom: 15px;">"${bookContent.intro.dedication}"</p>
-                <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
-                <h4>প্রকাশকের কথা:</h4>
-                <p>${bookContent.intro.preface}</p>
-            </div>
+        // 2. Load Ethics
+        const ethics = bookContent.ethics;
+        document.getElementById('ethicsCard').innerHTML = `
+            <h3>নীতিশাস্ত্র</h3>
+            <ul>${ethics.principles.map(p => `<li>${p}</li>`).join('')}</ul>
         `;
 
-        let ethicsHtml = `
-            <div class="ethics-box">
-                <h3 style="color: #d35400; margin-bottom: 15px;"><i class="fas fa-balance-scale"></i> ${bookContent.ethics.title}</h3>
-                <h4 style="margin-bottom: 10px;">মূল নীতি:</h4>
-                <ul class="ethics-list">
-                    ${bookContent.ethics.principles.map(p => `<li><i class="fas fa-check-circle"></i> ${p}</li>`).join('')}
-                </ul>
-                <h4 style="margin-top: 20px; margin-bottom: 10px;">আচরণবিধি:</h4>
-                <ul class="ethics-list">
-                    ${bookContent.ethics.standards.map(s => `<li><i class="fas fa-star"></i> ${s}</li>`).join('')}
-                </ul>
-            </div>
-        `;
-        document.getElementById('ethics-content').innerHTML = ethicsHtml;
-
-        // 3. Render Chapters (Accordion)
-        const chapterContainer = document.getElementById('chapter-list');
-        bookContent.chapters.forEach(chapter => {
+        // 3. Load Chapters
+        const chapContainer = document.getElementById('chapterList');
+        bookContent.chapters.forEach(chap => {
             const div = document.createElement('div');
-            div.className = 'chapter-card';
+            div.className = 'card';
             div.innerHTML = `
-                <div class="chapter-header" onclick="toggleChapter(this)">
-                    <h3>${chapter.title}</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <h3 onclick="toggleChapter(this)">${chap.title} <i class="fas fa-chevron-down"></i></h3>
                 <div class="chapter-body">
-                    <p style="font-size: 1.05rem; line-height: 1.8;">${chapter.description}</p>
-                    <div style="margin-top: 20px;">
-                        <h4 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">প্রশ্ন ও উত্তর:</h4>
-                        ${chapter.questions.map(q => `
-                            <div class="qa-box">
-                                <div class="qa-question">প্রশ্ন: ${q.q}</div>
-                                <div class="qa-answer">উত্তর: ${q.a}</div>
-                            </div>
-                        `).join('')}
-                    </div>
+                    <p>${chap.description}</p>
+                    <hr>
+                    ${chap.questions.map(q => `
+                        <p><strong>প্র: ${q.q}</strong><br>উ: ${q.a}</p>
+                    `).join('')}
                 </div>
             `;
-            chapterContainer.appendChild(div);
+            chapContainer.appendChild(div);
         });
 
-        // 4. Render Glossary
-        const glossaryContainer = document.getElementById('glossary-list');
+        // 4. Load Glossary
+        const glosContainer = document.getElementById('glossaryList');
         bookContent.glossary.forEach(item => {
             const div = document.createElement('div');
-            div.className = 'term-card';
+            div.className = 'card glossary-item';
             div.innerHTML = `
-                <div class="term-title">${item.term}</div>
-                <div>${item.definition}</div>
+                <h3 style="margin:0; color:#333">${item.term}</h3>
+                <p style="margin:5px 0 0 0; color:#666">${item.definition}</p>
             `;
-            glossaryContainer.appendChild(div);
+            glosContainer.appendChild(div);
         });
 
-        // 5. Render Emails
-        const emailContainer = document.getElementById('email-list');
-        bookContent.emails.forEach((email, index) => {
+        // 5. Load Emails
+        const emailContainer = document.getElementById('emailList');
+        bookContent.emails.forEach(email => {
             const div = document.createElement('div');
-            div.className = 'email-card';
+            div.className = 'card';
             div.innerHTML = `
-                <div class="email-header">
-                    <span>Subject: ${email.subject}</span>
-                    <button class="copy-btn" onclick="copyEmail(${index})"><i class="far fa-copy"></i> Copy</button>
-                </div>
-                <div class="email-body" id="email-body-${index}">${email.body}</div>
+                <h3>${email.subject}</h3>
+                <div class="email-box">${email.body}</div>
             `;
             emailContainer.appendChild(div);
         });
 
-        // 6. Render Footer
-        document.getElementById('footer-area').innerHTML = `
-            <p>${meta.copyright}</p>
-            <p style="font-size: 0.8rem; margin-top: 5px;">${meta.edition}</p>
-        `;
-
-        // --- Window Functions (Make accessible to HTML) ---
-        
-        window.showSection = function(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-
-            // Show selected
-            document.getElementById(sectionId).classList.add('active');
-            document.getElementById('btn-' + sectionId).classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
+        // Global Functions for UI
+        window.switchTab = function(id) {
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('active');
+            window.scrollTo(0,0);
         }
 
-        window.toggleChapter = function(element) {
-            const card = element.parentElement;
-            card.classList.toggle('open');
-            const icon = element.querySelector('i');
-            if(card.classList.contains('open')) {
-                icon.className = 'fas fa-chevron-up';
-            } else {
-                icon.className = 'fas fa-chevron-down';
-            }
+        window.toggleChapter = function(el) {
+            const body = el.nextElementSibling;
+            body.classList.toggle('show');
+            const icon = el.querySelector('i');
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
         }
 
         window.filterGlossary = function() {
-            const input = document.getElementById('glossarySearch');
-            const filter = input.value.toLowerCase();
-            const terms = document.getElementsByClassName('term-card');
-
-            for (let i = 0; i < terms.length; i++) {
-                const title = terms[i].getElementsByClassName('term-title')[0];
-                if (title) {
-                    const txtValue = title.textContent || title.innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        terms[i].style.display = "";
-                    } else {
-                        terms[i].style.display = "none";
-                    }
-                }
-            }
+            const val = document.getElementById('searchGlossary').value.toLowerCase();
+            document.querySelectorAll('.glossary-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(val) ? 'block' : 'none';
+            });
         }
+    </script>
 
-        window.copyEmail = function(index) {
-            const bodyText = document.getElementById(`email-body-${index}`).innerText;
-            navigator.clipboard.writeText(bodyText).then(() => {
-                alert("Email body copied to clipboard!");
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW Registered', reg))
+                    .catch(err => console.log('SW Failed', err));
             });
         }
     </script>
