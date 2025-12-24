@@ -3,126 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Knowledge for Bankers'</title>
+    <title>Basic Knowledge for Bankers' - Md. Moshin Khan</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        :root { --blue: #004a99; --gold: #D4AF37; --bg: #f0f2f5; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: #333; transition: 0.3s; }
-        .page { display: none; padding: 20px; max-width: 900px; margin: auto; background: white; min-height: 100vh; animation: fadeIn 0.5s; }
+        :root { --primary: #004a99; --secondary: #f8f9fa; --accent: #28a745; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--secondary); color: #333; }
+        .nav-header { position: sticky; top: 0; background: var(--primary); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .page { display: none; padding: 20px; max-width: 800px; margin: auto; background: white; min-height: 100vh; animation: fadeIn 0.4s; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* কভার পেজ ডিজাইন */
-        .cover-container { text-align: center; background: linear-gradient(135deg, var(--blue), #002d5f); color: white; padding: 50px 20px; }
-        .book-title { font-size: 2.5em; font-weight: bold; margin-bottom: 10px; }
+        .btn { border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
+        .btn-order { background: var(--accent); color: white; width: 100%; text-align: center; margin: 20px 0; padding: 15px; font-size: 1.2em; }
         
-        /* ইনডেক্স ও বাটন */
-        .index-item { padding: 15px; border-bottom: 1px solid #ddd; cursor: pointer; display: flex; align-items: center; transition: 0.2s; }
-        .index-item:hover { background: #f9f9f9; padding-left: 25px; color: var(--blue); }
-        .nav-header { position: sticky; top: 0; background: var(--blue); color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
-        .btn-order { display: block; width: 80%; margin: 20px auto; background: #28a745; color: white; text-align: center; padding: 15px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 1.1em; }
+        .index-list { list-style: none; padding: 0; }
+        .index-item { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; display: flex; justify-content: space-between; transition: 0.3s; }
+        .index-item:hover { background: #eef; padding-left: 25px; color: var(--primary); }
         
-        /* কন্টেন্ট স্টাইল */
-        .content-box { border-left: 5px solid var(--blue); padding-left: 15px; margin: 20px 0; background: #f9f9f9; padding: 15px; }
-        .question-box { background: #e8f4fd; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #b3d7ff; }
+        .topic-box { border-left: 4px solid var(--primary); padding-left: 15px; margin: 15px 0; background: #f0f7ff; padding: 15px; border-radius: 0 8px 8px 0; }
+        .qna-box { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        img { width: 100%; height: auto; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
 <div class="nav-header">
-    <span onclick="showPage('index_page')" style="cursor:pointer;">☰ সূচিপত্র</span>
-    <span>Basic Knowledge for Bankers</span>
-    <span onclick="showPage('cover_page')" style="cursor:pointer;">🏠 হোম</span>
+    <div onclick="showPage('index_page')" style="cursor:pointer;">☰ ইনডেক্স</div>
+    <div id="header-title">Bankers' Guide</div>
+    <div onclick="showPage('cover_page')" style="cursor:pointer;">🏠 হোম</div>
 </div>
 
-<div id="cover_page" class="page active">
-    <div class="cover-container">
-        <h1 class="book-title">Basic Knowledge for Bankers'</h1>
-        <p>Written for Bankers appearing at the Interview for Promotion & Job Seeker</p>
-        <img src="https://i.ibb.co/Lhbv2L6/cover.jpg" alt="Book Cover" style="width:250px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
-        <p style="margin-top:20px;"><strong>Md. Moshin Khan</strong><br>Executive Officer & Head of Branch</p>
-    </div>
-    <button class="btn-order" onclick="showPage('index_page')">পড়া শুরু করুন</button>
-    <a href="https://demand-supply.vercel.app" class="btn-order">বইটি অর্ডার করুন</a>
-</div>
-
-<div id="index_page" class="page">
-    <h2 style="color:var(--blue); border-bottom: 2px solid var(--blue);">বইয়ের সূচিপত্র</h2>
-    <div class="index-item" onclick="showPage('intro_page')">📖 প্রকাশকের কথা ও উৎসর্গ</div>
-    <div class="index-item" onclick="showPage('ethics_page')">⚖️ ব্যাংকিং নীতিশাস্ত্র (Ethics)</div>
-    <div class="index-item" onclick="showPage('kyc_page')">🔍 টপিক ১: KYC ও AML (বিস্তারিত)</div>
-    <div class="index-item" onclick="showPage('terms_page')">🅰️ ব্যাংকিং প্রচলিত শব্দাবলী (Jargon)</div>
-    <div class="index-item" onclick="showPage('email_page')">📧 ডেমো ইমেইল ফরমেট</div>
-    <div class="index-item" onclick="showPage('last_page')">🔚 শেষ পাতা ও যোগাযোগ</div>
+<div id="main-content">
+    <div id="cover_page" class="page active">
+        <center>
+            <h1 id="main-book-title"></h1>
+            <img src="https://i.ibb.co/Lhbv2L6/cover.jpg" alt="Book Cover">
+            <h3 id="author-name"></h3>
+            <p>পদোন্নতি পরীক্ষা এবং ব্যাংকিং ক্যারিয়ারের পূর্ণাঙ্গ গাইড।</p>
+        </center>
+        <button class="btn btn-order" onclick="showPage('index_page')">পড়া শুরু করুন</button>
+        <a href="https://demand-supply.vercel.app" class="btn btn-order">বইটি অর্ডার করুন</a>
     </div>
 
-<div id="intro_page" class="page">
-    <h2>প্রকাশকের কথা</h2>
-    <p>ব্যাংকিং সেক্টরে পদোন্নতি ভাইভা ও নতুনদের জন্য এই বইটি একটি সহায়ক গাইড। এটি বিভিন্ন ট্রেনিং নোট ও বাংলাদেশ ব্যাংকের সার্কুলারের সমন্বয়ে তৈরি.</p>
-    <div class="content-box">
-        <h3>উৎসর্গ</h3>
-        <p>বইটি আমার সকল সিনিয়র ব্যাংকার এবং শুভাকাঙ্ক্ষীদের উদ্দেশ্যে উৎসর্গ করা হলো.</p>
+    <div id="index_page" class="page">
+        <h2>সূচিপত্র</h2>
+        <ul id="index-list-container" class="index-list"></ul>
     </div>
-    <a href="https://demand-supply.vercel.app" class="btn-order">Order Now</a>
-</div>
 
-<div id="ethics_page" class="page">
-    <h2>ব্যাংকিং নীতিশাস্ত্র</h2>
-    <ul>
-        <li>সততাই ব্যাংকিং এর মূলধন.</li>
-        <li>সেবাই ব্যাংকিং এর মূল লক্ষ্য.</li>
-        <li>আইনের পরিমন্ডলের মধ্যে কাজ করতে হবে.</li>
-    </ul>
-    <div class="question-box">
-        <strong>মডেল প্রশ্ন:</strong> ব্যাংকিং এর মূল ভিত্তি কী?<br>
-        <strong>উত্তর:</strong> বিশ্বাস.
+    <div id="content_display_page" class="page">
+        <h2 id="topic-title"></h2>
+        <div id="topic-image-container"></div>
+        <div id="topic-body" class="topic-box"></div>
+        <div id="topic-qna"></div>
+        <a href="https://demand-supply.vercel.app" class="btn btn-order">অর্ডার নাও</a>
+        <button class="btn" style="background:#666; color:white;" onclick="showPage('index_page')">সূচিপত্রে ফিরুন</button>
     </div>
-    <a href="https://demand-supply.vercel.app" class="btn-order">অর্ডার করুন</a>
 </div>
 
-<div id="terms_page" class="page">
-    <h2>ব্যাংকিং সেক্টরে ব্যবহৃত প্রচলিত শব্দ</h2>
-    <div class="content-box">
-        <p><strong>CIB:</strong> Credit Information Bureau.</p>
-        <p><strong>NPL:</strong> Non-Performing Loan (খেলাপি ঋণ)।</p>
-        <p><strong>SWIFT:</strong> Society for Worldwide Interbank Financial Telecommunication.</p>
-        <p><strong>CRISL:</strong> Credit Rating Information and Services Limited.</p>
-    </div>
-    <button class="btn-order" onclick="showPage('index_page')">পরবর্তী টপিক</button>
-</div>
+<script type="module">
+    import bookContent from './content.js';
 
-<div id="email_page" class="page">
-    <h2>অফিশিয়াল ইমেইল ডেমো</h2>
-    <div class="content-box">
-        <p><strong>১. ঋণ পরিশোধের অনুরোধ (Loan Reminder):</strong></p>
-        <pre>Subject: Reminder for Loan Installment
-Dear Client,
-This is to remind you that your loan installment is due on...
-        </pre>
-    </div>
-    <a href="https://demand-supply.vercel.app" class="btn-order">Order Now</a>
-</div>
+    // ১. কভার পেজ ডেটা সেটআপ
+    document.getElementById('main-book-title').innerText = bookContent.bookTitle;
+    document.getElementById('author-name').innerText = bookContent.author;
 
-<div id="last_page" class="page" style="text-align:center;">
-    <h2>শেষ পাতা</h2>
-    <img src="https://i.ibb.co/Lhbv2L6/last-page.jpg" style="width:200px;">
-    <p>বইটি পড়ার জন্য ধন্যবাদ। আপনার ক্যারিয়ার উজ্জ্বল হোক।</p>
-    <p>যোগাযোগ: ০১৭১৬-৯৯২৯৫৮</p>
-    <a href="https://demand-supply.vercel.app" class="btn-order">পুরো বইটি সংগ্রহ করুন</a>
-</div>
+    const indexContainer = document.getElementById('index-list-container');
 
-<script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        window.scrollTo(0, 0);
+    // ২. ইনডেক্স তৈরি করা
+    function buildIndex() {
+        // নীতিশাস্ত্র ও প্রকাশকের কথা আগে যুক্ত করা
+        addIndexItem("প্রকাশকের কথা", () => renderStatic("intro"));
+        addIndexItem("ব্যাংকিং নীতিশাস্ত্র", () => renderStatic("ethics"));
+        addIndexItem("ব্যাংকিং প্রচলিত শব্দাবলী", () => renderStatic("glossary"));
+        addIndexItem("ডেমো ইমেইল ফরমেট", () => renderStatic("emails"));
+
+        // ৫০টি টপিক লুপের মাধ্যমে ইনডেক্সে যুক্ত করা
+        bookContent.topics.forEach((topic, index) => {
+            addIndexItem(`${index + 1}. ${topic.title}`, () => renderTopic(topic));
+        });
     }
 
-    // PWA Service Worker Registration
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js');
+    function addIndexItem(text, action) {
+        const li = document.createElement('li');
+        li.className = 'index-item';
+        li.innerHTML = `<span>${text}</span> <span>▶</span>`;
+        li.onclick = action;
+        indexContainer.appendChild(li);
+    }
+
+    // ৩. টপিক রেন্ডার ফাংশন
+    function renderTopic(topic) {
+        showPage('content_display_page');
+        document.getElementById('topic-title').innerText = topic.title;
+        document.getElementById('topic-body').innerHTML = `
+            <p><strong>তত্ত্ব:</strong> ${topic.theory}</p>
+            <p><strong>উদাহরণ:</strong> ${topic.example || 'প্রযোজ্য নয়'}</p>
+        `;
+        
+        // ছবি যুক্ত করার অপশন (যদি থাকে)
+        const imgCont = document.getElementById('topic-image-container');
+        imgCont.innerHTML = topic.image ? `<img src="${topic.image}" alt="${topic.title}">` : '';
+
+        // মডেল প্রশ্ন সেটআপ
+        let qnaHtml = '<h3>মডেল প্রশ্নাবলী:</h3>';
+        topic.qna.forEach(item => {
+            qnaHtml += `<div class="qna-box"><strong>প্রশ্ন:</strong> ${item.q}<br><strong>উত্তর:</strong> ${item.a}</div>`;
         });
+        document.getElementById('topic-qna').innerHTML = qnaHtml;
+    }
+
+    // ৪. স্ট্যাটিক পেজ রেন্ডার (গ্লসারি, ইমেইল ইত্যাদি)
+    function renderStatic(type) {
+        showPage('content_display_page');
+        const title = document.getElementById('topic-title');
+        const body = document.getElementById('topic-body');
+        document.getElementById('topic-qna').innerHTML = '';
+        document.getElementById('topic-image-container').innerHTML = '';
+
+        if(type === 'glossary') {
+            title.innerText = "ব্যাংকিং প্রচলিত শব্দাবলী";
+            let html = '<ul>';
+            bookContent.glossary.forEach(item => html += `<li><strong>${item.term}:</strong> ${item.definition}</li>`);
+            body.innerHTML = html + '</ul>';
+        } else if(type === 'emails') {
+            title.innerText = "ডেমো ইমেইল ফরমেট";
+            let html = '';
+            bookContent.emails.forEach(email => html += `<div class="qna-box"><strong>Subject:</strong> ${email.subject}<br><pre>${email.body}</pre></div>`);
+            body.innerHTML = html;
+        } else if(type === 'intro') {
+            title.innerText = "প্রকাশকের কথা";
+            body.innerHTML = `<p>${bookContent.intro.publisherNote}</p><h3>উৎসর্গ:</h3><p>${bookContent.intro.dedication}</p>`;
+        } else if(type === 'ethics') {
+            title.innerText = "ব্যাংকিং দর্শন ও নীতিশাস্ত্র";
+            body.innerHTML = `<h3>দর্শন:</h3><ul>${bookContent.ethics.philosophy.map(p => `<li>${p}</li>`).join('')}</ul>
+                              <h3>মানদণ্ড:</h3><ul>${bookContent.ethics.standards.map(s => `<li>${s}</li>`).join('')}</ul>`;
+        }
+    }
+
+    window.showPage = function(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    buildIndex();
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
     }
 </script>
 </body>
