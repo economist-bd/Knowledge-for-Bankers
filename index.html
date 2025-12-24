@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Knowledge for Bankers - PWA</title>
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        :root { --primary: #004a99; --secondary: #f4f4f4; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--secondary); }
+        .page { display: none; padding: 20px; max-width: 800px; margin: auto; background: white; min-height: 100vh; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .active { display: block; }
+        .nav-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin: 5px; }
+        .order-btn { display: block; width: 100%; background: #28a745; color: white; text-align: center; padding: 15px; text-decoration: none; font-weight: bold; border-radius: 8px; margin-top: 20px; }
+        .index-list { list-style: none; padding: 0; }
+        .index-list li { padding: 10px; border-bottom: 1px solid #ddd; cursor: pointer; color: var(--primary); }
+        img { max-width: 100%; height: auto; border-radius: 5px; margin: 10px 0; }
+        .topic-content { line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<div id="cover" class="page active">
+    <h1 style="text-align:center;">Basic Knowledge for Bankers'</h1>
+    <img src="YOUR_COVER_IMAGE_LINK" alt="Cover Page">
+    <p style="text-align:center;"><strong>Md. Moshin Khan</strong></p>
+    <button class="nav-btn" onclick="showPage('index')">বইটি পড়ুন (ইনডেক্স)</button>
+    <a href="https://demand-supply.vercel.app" class="order-btn">বইটি অর্ডার করুন (Order Now)</a>
+</div>
+
+<div id="index" class="page">
+    <h2>সূচিপত্র</h2>
+    <ul class="index-list">
+        <li onclick="showPage('publisher')">প্রকাশকের কথা</li>
+        <li onclick="showPage('ethics')">ব্যাংকিং নীতিশাস্ত্র (Ethics)</li>
+        <li onclick="showPage('terms')">ব্যাংকিং প্রচলিত শব্দাবলী</li>
+        <li onclick="showPage('email_demo')">ডেমো ইমেইল ফরমেট</li>
+        <li onclick="showPage('viva_prep')">ভাইভা প্রস্তুতি</li>
+        </ul>
+    <button class="nav-btn" onclick="showPage('cover')">ফিরে যান</button>
+</div>
+
+<div id="publisher" class="page">
+    <h2>প্রকাশকের কথা</h2>
+    <p>ব্যাংকারদের পদোন্নতি এবং নতুনদের প্রস্তুতির কথা মাথায় রেখেই এই সংকলন।</p>
+    <p><strong>প্রকাশক:</strong> মোঃ মোহসিন খান</p>
+    <a href="https://demand-supply.vercel.app" class="order-btn">অর্ডার করুন</a>
+    <button class="nav-btn" onclick="showPage('index')">ইনডেক্স</button>
+</div>
+
+<div id="ethics" class="page">
+    <h2>নীতিশাস্ত্রে ন্যূনতম মান</h2>
+    <ul>
+        <li>আইনের পরিমন্ডলের মধ্যে কাজ করতে হবে।</li>
+        <li>আমানতকারীদের টাকা যথা সময় চুক্তি মোতাবেক ফেরত দিতে হবে।</li>
+        <li>সম্মানিত গ্রাহকদের সঙ্গে সুব্যবহার করতে হবে।</li>
+    </ul>
+    <button class="nav-btn" onclick="showPage('index')">ইনডেক্স</button>
+</div>
+
+<div id="terms" class="page">
+    <h2>ব্যাংকিং প্রচলিত শব্দাবলী (Glossary)</h2>
+    <div class="topic-content">
+        <p><strong>১. KYC:</strong> Know Your Customer - গ্রাহকের সঠিক পরিচয় নিশ্চিতকরণ।</p>
+        <p><strong>২. CRR:</strong> Cash Reserve Ratio - কেন্দ্রীয় ব্যাংকে রক্ষিত নগদ জমা।</p>
+        <p><strong>৩. NPL:</strong> Non-Performing Loan - খেলাপি ঋণ।</p>
+    </div>
+    <button class="nav-btn" onclick="showPage('index')">ইনডেক্স</button>
+</div>
+
+<script>
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+    
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+</script>
+</body>
+</html>
