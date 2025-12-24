@@ -1,15 +1,21 @@
 {
-  "name": "Basic Knowledge for Bankers",
-  "short_name": "BankerApp",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#004a99",
-  "theme_color": "#004a99",
-  "icons": [
-    {
-      "src": "https://i.ibb.co/Lhbv2L6/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
+    "name": "Modern Banking Guide",
+    "short_name": "Banking Guide",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#f4f7f6",
+    "theme_color": "#0056b3",
+    "description": "A complete guide for bankers with chapters, glossary, and email formats.",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/2830/2830284.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/2830/2830284.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
